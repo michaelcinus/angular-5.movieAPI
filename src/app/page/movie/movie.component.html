@@ -1,0 +1,32 @@
+<div class="mt-5 mb-5 row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        Movies
+      </div>
+      <div class="card-body">
+          <ul *ngFor="let m of movies" class="list-group mb-1">
+            <li class="list-group-item list-group-item-action d-flex justify-content-between">
+              {{m.nome}}
+              <div>
+                <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#viewModal" (click)="viewClick(m)">View</button>
+                <button class="btn btn-success mr-1" (click)="selectionClick(m)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteClick(m)">Delete</button>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <app-movie-form [movie]="selectedMovie" (feedbackEv)="addMovieEvent($event)"></app-movie-form>
+  </div>
+</div>
+
+<app-movie-view [movie]="viewMovie"></app-movie-view>
+
+
+
+
+
+

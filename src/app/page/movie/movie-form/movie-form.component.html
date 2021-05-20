@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-header">
+      Form Movie
+    </div>
+    <div class="card-body">
+        <form #movieForm="ngForm" (ngSubmit)="submit()">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" placeholder="Add Title" name="nome" id="nome" #nome [(ngModel)]="movieModel.nome">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" placeholder="Add Description" name="descrizione" id="descrizione" #nome [(ngModel)]="movieModel.descrizione">
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>

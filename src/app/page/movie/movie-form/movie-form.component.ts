@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Movie } from 'src/app/model/movie';
+import { category } from 'src/app/model/category';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-movie-form',
@@ -11,6 +13,7 @@ export class MovieFormComponent implements OnInit {
 
   movie_: Movie = {};
   movieModel: Movie = {};
+  categories: Array<category> = [];
 
   @Input()
   set movie (m:Movie) {
@@ -21,18 +24,23 @@ export class MovieFormComponent implements OnInit {
     this.movieModel.anno = m.anno;
   }
 
-  get movie () {
+  get movie ( ) {
     return this.movie_
   }
 
   @Output()
   feedbackEv: EventEmitter<Movie>
 
-  constructor() {
+  constructor(private categoryService: CategoryService) {
     this.feedbackEv = new EventEmitter<Movie>();
    }
 
   ngOnInit(): void {
+    this.categoryService.getAllCategory().subscribe(
+      res => this.categories = res,
+      err => console.log(err)
+    )
+    
   }
 
   submit(){

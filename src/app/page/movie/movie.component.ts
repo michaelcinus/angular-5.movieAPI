@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/model/movie';
+import { CategoryService } from 'src/app/services/category.service';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -10,14 +11,14 @@ import { MovieService } from 'src/app/services/movie.service';
 export class MovieComponent implements OnInit {
 
   movies: Array<Movie> = [];
-  selectedMovie!: Movie;
-  viewMovie!: Movie;
-  movieModel?: Movie;
+  selectedMovie: Movie = {};
+  viewMovie: Movie = {};
+  movieModel: Movie = {};
 
   constructor( private movieService: MovieService) { }
 
   ngOnInit(): void {
-    this.getAll()
+    this.getAll();
   }
 
   addMovieEvent(m : Movie) {

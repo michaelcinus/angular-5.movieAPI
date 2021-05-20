@@ -5,9 +5,15 @@
               Categories
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <ul *ngFor="let c of categories" class="list-group mb-1">
+                <li class="list-group-item list-group-item-action d-flex justify-content-between">
+                  {{ c.id }} : {{ c.genere }}
+                  <div>
+                    <button class="btn btn-success mr-1" (click)="selectionClick(c)">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
     </div>
@@ -17,9 +23,13 @@
               Form Categories
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <form #categoryForm="ngForm" (ngSubmit)="addCategory()">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control" placeholder="Add genere" name="genere" id="gener" #genere [(ngModel)]="categoryModel.genere">
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
             </div>
           </div>
     </div>
